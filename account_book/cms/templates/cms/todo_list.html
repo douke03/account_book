@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}ToDoリスト{% endblock title %}
+{% block extrahead %}
+<style>
+table {
+  margin-top: 8px;
+}
+</style>
+{% endblock %}
+{% block content %}
+    <h3 class="page-header">ToDoリスト</h3>
+    <a href="{% url 'todo_add' %}" class="btn btn-default btn-sm">追加</a>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>ToDo</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for todo in todo_list %}
+        <tr>
+          <td>
+            <p>
+            {% if todo.is_complete == True %}
+            <span class="label label-primary">対応済み</span>
+            {% else %}
+            <span class="label label-warning">未対応</span>
+            {% endif %}
+            </p>
+            {{ todo.title }}
+          </td>
+          <td>
+            <a href="{% url 'todo_mod' todo_id=todo.id %}" class="btn btn-default btn-sm">修正</a>
+            <a href="{% url 'todo_del' todo_id=todo.id %}" class="btn btn-default btn-sm">削除</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock content %}

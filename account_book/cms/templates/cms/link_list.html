@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Link一覧{% endblock title %}
+{% block extrahead %}
+<style>
+table {
+  margin-top: 8px;
+}
+</style>
+{% endblock %}
+{% block content %}
+  <h3 class="page-header">Link一覧</h3>
+  <div class="list-group">
+    <li class="list-group-item list-group-item-info">Link</li>
+    <a href="http://192.168.10.5:8000/admin/login/" target="_blank" class="list-group-item">Django 管理サイト</a>
+    <a href="http://192.168.10.5:8000/account_book/todo/" target="_blank" class="list-group-item">ToDoリスト</a>
+  </div>
+{% endblock content %}

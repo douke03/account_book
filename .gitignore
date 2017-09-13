@@ -1,0 +1,9 @@
+###git管理外のファイルを記述する
+#ディレクトリ
+/Include/
+/Lib/
+/Scripts/
+/tcl/
+#その他
+/pip-selfcheck.json
+
