@@ -11,8 +11,8 @@ table {
   <h3 class="page-header">Link一覧</h3>
   <div class="list-group">
     <li class="list-group-item list-group-item-info">Link</li>
-    <a href="http://192.168.10.5:8000/admin/login/" target="_blank" class="list-group-item">Django 管理サイト</a>
-    <a href="http://192.168.10.5:8000/account_book/todo/" target="_blank" class="list-group-item">ToDoリスト</a>
-    <a href="https://github.com/douke03/account_book/tree/master/account_book" target="_blank" class="list-group-item">ソースコード(GitHub)</a>
+    <a href={{ link_admin }} target="_blank" class="list-group-item">Django 管理サイト</a>
+    <a href={{ link_todo }} target="_blank" class="list-group-item">ToDoリスト</a>
+    <a href={{ link_code }} target="_blank" class="list-group-item">ソースコード[GitHub]</a>
   </div>
 {% endblock content %}

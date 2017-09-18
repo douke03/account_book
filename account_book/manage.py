@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 import os
 import sys
-import pymysql
+# mysql setting
+# import pymysql
 
 if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "account_book.settings")
@@ -21,4 +22,5 @@ if __name__ == "__main__":
             )
         raise
     execute_from_command_line(sys.argv)
-    pymysql.install_as_MySQLdb()
+    # mysql setting
+    # pymysql.install_as_MySQLdb()

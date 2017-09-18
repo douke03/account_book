@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}ToDo詳細{% endblock title %}
+{% block extrahead %}
+<style>
+table {
+  margin-top: 8px;
+}
+</style>
+{% endblock %}
+{% block content %}
+  <h3 class="page-header">{{ todo.title }}</h3>
+  <p>
+  {% if todo.is_complete == True %}
+  <span class="label label-primary">対応済み</span>
+  {% else %}
+  <span class="label label-warning">未対応</span>
+  {% endif %}
+  </p>
+  <div>
+    <textarea class="form-control" id="InputTextarea" rows="10" readonly>{{ todo.text }}</textarea>
+  </div>
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>対応状況</td>
+        <td>{{ todo.situation }}</td>
+      </tr>
+      <tr>
+        <td>作成者</td>
+        <td>{{ todo.created_by }}</td>
+      </tr>
+      <tr>
+        <td>作成日</td>
+        <td>{{ todo.created_at }}</td>
+      </tr>
+      {% if todo.updated_by %}
+      <tr>
+        <td>更新者</td>
+        <td>{{ todo.updated_by }}</td>
+      </tr>
+      <tr>
+        <td>更新日</td>
+        <td>{{ todo.updated_at }}</td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+  <a href="{% url 'todo_list' %}" class="btn btn-default btn-sm">戻る</a>
+  <a href="{% url 'todo_mod' todo_id=todo.id %}" class="btn btn-default btn-sm">修正</a>
+{% endblock content %}

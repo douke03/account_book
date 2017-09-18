@@ -25,7 +25,7 @@ SECRET_KEY = '9=xy#i5i*6ul-u26!%&xlppix=k=dgic$9%&!xg4)q5v0zq2%i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.10.5"]
+ALLOWED_HOSTS = ['192.168.10.5', '120.74.218.4']
 
 
 # Application definition
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrapform',
+    'accounts',
     'cms',
 ]
 
@@ -71,17 +71,24 @@ TEMPLATES = [
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+# sqlite setting
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'account_book',
-        'USER': 'root',
-        'PASSWORD': 'P@ssw0rd',
-        'HOST': '',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+# mysql setting
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'schema_name',
+#         'USER': 'admin_name',
+#         'PASSWORD': 'xxxxxxxx',
+#         'HOST': '',
+#         'PORT': '',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -125,3 +132,7 @@ STATICFILES_DIRS = (
 )
 
 STATIC_URL = '/static/'
+
+
+# Formats files
+FORMAT_MODULE_PATH = 'account_book.formats'
