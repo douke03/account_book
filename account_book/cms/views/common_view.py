@@ -1,65 +1,48 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import TemplateView, ListView, DetailView
-from django.http import HttpResponse
-from cms.models.todo_model import ToDo
-from cms.forms import ToDoForm
+"""viewクラス用の共通定義クラス
+
+viewクラスを作成する際はこのクラス内に定義されているクラスを継承して作成する
+共通化すべき定数、変数、メソッドは適宜追加する
+特殊な定数、変数、メソッド継承先メソッドに定義する
+"""
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views.generic import ListView
+from django.views.generic import DetailView
+from django.views.generic.edit import CreateView
+from django.contrib import messages
+from django.contrib.auth.models import User
 
 
-class ViewLinkList(TemplateView):
+@method_decorator(login_required, name='dispatch')
+class CommonListView(ListView):
+    """ListViewクラス用の共通定義"""
 
-    template_name = "cms/link_list.html"
-
-    def get_context_data(self, **kwargs):
-
-        context = super().get_context_data(**kwargs)
-        domain = 'http://192.168.10.5:8000/'
-        context = {
-            'link_todo': domain + 'account_book/todo/',
-            'link_admin': domain + 'admin/login/',
-            'link_code': 'https://github.com/douke03/account_book/tree/master/account_book',
-        }
-        return context
+    paginate_by = 5
 
 
-class ViewToDo(ListView):
-    template_name = "cms/todo_list.html"
-    model = ToDo
-    paginate_by = 10
+@method_decorator(login_required, name='dispatch')
+class CommonDatailView(DetailView):
+    """DatailViewクラス用の共通定義"""
 
-    def get_queryset(self):
-        return ToDo.objects.filter(is_active=True).order_by('is_complete', 'id')
+    template_name = 'hoge.html'
 
 
-class ViewToDoDatail(DetailView):
-    template_name = "cms/todo_detail.html"
-    model = ToDo
+@method_decorator(login_required, name='dispatch')
+class CommonCreateView(CreateView):
+    """CreateViewクラス用の共通定義"""
 
+    def form_valid(self, form):
+        """form_valid"""
+        obj = form.save(commit=False)
+        if obj.id:
+            obj.updated_by = User.objects.get(pk=self.request.user.id)
+            messages.success(self.request, "更新しました")
+        else:
+            obj.created_by = User.objects.get(pk=self.request.user.id)
+            messages.success(self.request, "作成しました")
+        return super().form_valid(form)
 
-def todo_edit(request, todo_id=None):
-    """ToDoの編集"""
-
-    if todo_id:
-        todo_list = get_object_or_404(ToDo, pk=todo_id)
-    else:
-        todo_list = ToDo()
-
-    if request.method == 'POST':
-        form = ToDoForm(request.POST, instance=todo_list)
-        if form.is_valid():
-            todo_list = form.save(commit=False)
-            todo_list.save()
-            return redirect('todo_list')
-    else:
-        form = ToDoForm(instance=todo_list)
-
-    return render(request, 'cms/todo_edit.html', dict(form=form,
-                                                      todo_id=todo_id))
-
-
-def todo_del(request, todo_id):
-    """ToDoの削除"""
-
-    todo = get_object_or_404(ToDo, pk=todo_id)
-    todo.delete()
-
-    return redirect('todo_list')
+    def form_invalid(self, form):
+        """form_invalid"""
+        messages.warning(self.request, "作成できませんでした")
+        return super().form_invalid(form)
