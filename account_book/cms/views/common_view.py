@@ -17,7 +17,7 @@ from django.contrib.auth.models import User
 class CommonListView(ListView):
     """ListViewクラス用の共通定義"""
 
-    paginate_by = 5
+    paginate_by = 8
 
 
 @method_decorator(login_required, name='dispatch')

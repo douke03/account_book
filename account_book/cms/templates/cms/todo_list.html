@@ -10,6 +10,7 @@ table {
 {% block content %}
   <h3 class="page-header">ToDoリスト</h3>
   <a href="{% url 'todo_create' %}" class="btn btn-default btn-sm">追加</a>
+  <a href="{% url 'logout' %}" class="btn btn-default btn-sm">ログアウト</a>
   <table class="table table-bordered">
     <thead>
       <tr>

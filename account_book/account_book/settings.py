@@ -136,3 +136,8 @@ STATIC_URL = '/static/'
 
 # Formats files
 FORMAT_MODULE_PATH = 'account_book.formats'
+
+
+# Login info
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
