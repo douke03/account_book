@@ -19,7 +19,7 @@ def profile(request):
     return render(request, 'accounts/profile.html', context)
 
 
-def regist(request):
+def register(request):
     form = RegisterForm(request.POST or None)
     context = {
         'form': form,
@@ -28,7 +28,7 @@ def regist(request):
 
 
 @require_POST
-def regist_save(request):
+def register_save(request):
     form = RegisterForm(request.POST)
     if form.is_valid():
         form.save()

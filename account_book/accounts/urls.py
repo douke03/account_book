@@ -8,8 +8,8 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^profile$', views.profile, name='profile'),
 
-    url(r'^regist/$', views.regist, name='regist'),
-    url(r'^regist_save/$', views.regist_save, name='regist_save'),
+    url(r'^register/$', views.register, name='register'),
+    url(r'^register_save/$', views.register_save, name='register_save'),
 
     url(r'^login/$', login, {'template_name': 'accounts/login.html',
                              'authentication_form': LoginForm}, name='login'),
