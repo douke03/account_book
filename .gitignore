@@ -5,6 +5,6 @@
 /Scripts/
 /tcl/
 #‚»‚Ì‘¼
-/account_book/db.sqlite3
+/account_book/*.sqlite3
 /pip-selfcheck.json
 
