@@ -45,6 +45,6 @@ table {
       {% endif %}
     </tbody>
   </table>
-  <a href="{% url 'todo_list' %}" class="btn btn-default btn-sm">戻る</a>
-  <a href="{% url 'todo_mod' todo_id=todo.id %}" class="btn btn-default btn-sm">修正</a>
+  <a href="{% url 'account_book:todo_list' %}" class="btn btn-default btn-sm">戻る</a>
+  <a href="{% url 'account_book:todo_mod' todo_id=todo.id %}" class="btn btn-default btn-sm">修正</a>
 {% endblock content %}

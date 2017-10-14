@@ -1,14 +1,19 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic import CreateView
 from accounts.forms import RegisterForm
 
 
-def index(request):
-    context = {
-        'user': request.user,
-    }
-    return render(request, 'accounts/index.html', context)
+def root_url(request):
+
+    return redirect('account_book:todo_list')
+
+
+class CreateUserView(CreateView):
+    template_name = 'accounts/register.html'
+    form_class = RegisterForm
+    success_url = reverse_lazy('account_book:todo_list')
 
 
 @login_required
@@ -17,24 +22,3 @@ def profile(request):
         'user': request.user,
     }
     return render(request, 'accounts/profile.html', context)
-
-
-def register(request):
-    form = RegisterForm(request.POST or None)
-    context = {
-        'form': form,
-    }
-    return render(request, 'accounts/register.html', context)
-
-
-@require_POST
-def register_save(request):
-    form = RegisterForm(request.POST)
-    if form.is_valid():
-        form.save()
-        return redirect('todo_list')
-
-    context = {
-        'form': form,
-    }
-    return render(request, 'accounts/register.html', context)

@@ -9,8 +9,8 @@ table {
 {% endblock %}
 {% block content %}
   <h3 class="page-header">ToDoリスト</h3>
-  <a href="{% url 'todo_create' %}" class="btn btn-default btn-sm">追加</a>
-  <a href="{% url 'logout' %}" class="btn btn-default btn-sm">ログアウト</a>
+  <a href="{% url 'account_book:todo_create' %}" class="btn btn-default btn-sm">追加</a>
+  <a href="{% url 'accounts:logout' %}" class="btn btn-default btn-sm">ログアウト</a>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -30,7 +30,7 @@ table {
           <span class="label label-warning">未対応</span>
           {% endif %}
           </p>
-          <a href="{% url 'todo_detail' pk=todo.id %}">
+          <a href="{% url 'account_book:todo_detail' pk=todo.id %}">
           {{ todo.title }}
         </a>
         </td>
