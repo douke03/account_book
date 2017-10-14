@@ -5,5 +5,5 @@ from cms.forms import ToDoForm
 
 class ToDoCreateView(CommonCreateView):
     template_name = 'cms/todo_create.html'
-    success_url = reverse_lazy('account_book:todo_list')
+    success_url = reverse_lazy('account_book:todo')
     form_class = ToDoForm

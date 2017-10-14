@@ -18,7 +18,7 @@ def todo_edit(request, todo_id=None):
             todo = form.save(commit=False)
             todo.created_by = User.objects.get(pk=request.user.id)
             todo.save()
-            return redirect('account_book:todo_list')
+            return redirect('account_book:todo')
     else:
         form = ToDoForm(instance=todo)
 
@@ -31,4 +31,4 @@ def todo_del(request, todo_id):
     todo = get_object_or_404(ToDo, pk=todo_id)
     todo.delete()
 
-    return redirect('account_book:todo_list')
+    return redirect('account_book:todo')

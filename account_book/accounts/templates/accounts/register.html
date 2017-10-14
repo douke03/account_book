@@ -3,7 +3,7 @@
  
 <form class="my-form" action="{% url 'accounts:register' %}" method="POST">
   <div class="form-group">
-    <label for="id_username">ユーザネーム</label>
+    <label for="id_username">ユーザー名</label>
     {{ form.username }}
     {{ form.username.errors }}
     <p class="help-block">{{ form.username.help_text }}</p>

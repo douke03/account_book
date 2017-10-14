@@ -17,7 +17,7 @@
       </div>
     </div>
   </form>
-  <a href="{% url 'account_book:todo_list' %}" class="btn btn-default btn-sm">戻る</a>
+  <a href="{% url 'account_book:todo' %}" class="btn btn-default btn-sm">戻る</a>
   {% if todo_id %}
   <a href="{% url 'account_book:todo_del' todo_id=todo_id %}" class="btn btn-default btn-sm">削除</a>
   {% endif %}
