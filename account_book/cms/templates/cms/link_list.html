@@ -1,13 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Link一覧{% endblock title %}
-{% block extrahead %}
-<style>
-table {
-  margin-top: 8px;
-}
-</style>
-{% endblock %}
-{% block content %}
+{% block mainContent %}
   <h3 class="page-header">Link一覧</h3>
   <div class="list-group">
     <li class="list-group-item list-group-item-info">Link</li>
@@ -15,4 +8,4 @@ table {
     <a href={{ link_todo }} target="_blank" class="list-group-item">ToDoリスト</a>
     <a href={{ link_code }} target="_blank" class="list-group-item">ソースコード[GitHub]</a>
   </div>
-{% endblock content %}
+{% endblock %}
