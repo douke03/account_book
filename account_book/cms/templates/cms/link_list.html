@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Link一覧{% endblock title %}
+{% block pageHeaderTitle %}Link一覧{% endblock pageHeaderTitle %}
+{% block pageHeaderSubTitle %}sample{% endblock pageHeaderSubTitle %}
 {% block mainContent %}
-  <h3 class="page-header">Link一覧</h3>
   <div class="list-group">
     <li class="list-group-item list-group-item-info">Link</li>
     <a href={{ link_admin }} target="_blank" class="list-group-item">Django 管理サイト</a>
-    <a href={{ link_todo }} target="_blank" class="list-group-item">ToDoリスト</a>
     <a href={{ link_code }} target="_blank" class="list-group-item">ソースコード[GitHub]</a>
   </div>
-{% endblock %}
+{% endblock mainContent %}

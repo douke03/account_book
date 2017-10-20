@@ -9,6 +9,7 @@ class LinkListView(TemplateView):
 
         context = super().get_context_data(**kwargs)
         domain = 'http://192.168.10.5:8000/'
+        # domain = 'http://120.74.218.4:8000/'
         context = {
             'link_todo': domain + 'account_book/todo/',
             'link_admin': domain + 'admin/login/',

@@ -6,7 +6,7 @@ from cms.views.todo_create_view import ToDoCreateView
 from cms.views import view
 
 urlpatterns = [
-    url(r'^link_list/$', LinkListView.as_view()),
+    url(r'^link_list/$', LinkListView.as_view(), name='link'),
     url(r'^todo/$', ToDoView.as_view(), name='todo'),
     url(r'^todo/detail/(?P<pk>\d+)$', ToDoDatailView.as_view(), name='todo_detail'),
     url(r'^todo/create/$', ToDoCreateView.as_view(), name='todo_create'),
