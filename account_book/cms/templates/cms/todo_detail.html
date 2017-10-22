@@ -1,14 +1,8 @@
 {% extends "base.html" %}
-{% block title %}ToDo詳細{% endblock title %}
-{% block extrahead %}
-<style>
-table {
-  margin-top: 8px;
-}
-</style>
-{% endblock %}
-{% block content %}
-  <h3 class="page-header">{{ todo.title }}</h3>
+{% block title %}ToDo{% endblock title %}
+{% block pageHeaderTitle %}{{ todo.title }}{% endblock pageHeaderTitle %}
+{% block pageHeaderSubTitle %}sample{% endblock pageHeaderSubTitle %}
+{% block mainContent %}
   <p>
   {% if todo.is_complete == True %}
   <span class="label label-primary">対応済み</span>
@@ -47,4 +41,4 @@ table {
   </table>
   <a href="{% url 'account_book:todo' %}" class="btn btn-default btn-sm">戻る</a>
   <a href="{% url 'account_book:todo_mod' todo_id=todo.id %}" class="btn btn-default btn-sm">修正</a>
-{% endblock content %}
+{% endblock mainContent %}

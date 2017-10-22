@@ -1,9 +1,9 @@
 from django.views.generic import TemplateView
 
 
-class LinkListView(TemplateView):
+class IndexView(TemplateView):
 
-    template_name = 'cms/link_list.html'
+    template_name = 'cms/index.html'
 
     def get_context_data(self, **kwargs):
 

@@ -1,12 +1,12 @@
 from django.conf.urls import url
-from cms.views.link_list_view import LinkListView
+from cms.views.index import IndexView
 from cms.views.todo_view import ToDoView
 from cms.views.todo_detail_view import ToDoDatailView
 from cms.views.todo_create_view import ToDoCreateView
 from cms.views import view
 
 urlpatterns = [
-    url(r'^link_list/$', LinkListView.as_view(), name='link'),
+    url(r'^index/$', IndexView.as_view(), name='index'),
     url(r'^todo/$', ToDoView.as_view(), name='todo'),
     url(r'^todo/detail/(?P<pk>\d+)$', ToDoDatailView.as_view(), name='todo_detail'),
     url(r'^todo/create/$', ToDoCreateView.as_view(), name='todo_create'),

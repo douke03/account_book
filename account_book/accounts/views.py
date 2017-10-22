@@ -8,13 +8,13 @@ from accounts.forms import RegisterForm
 
 def root_url(request):
 
-    return redirect('account_book:todo')
+    return redirect('account_book:index')
 
 
 class CreateUserView(CreateView):
     template_name = 'accounts/register.html'
     form_class = RegisterForm
-    success_url = reverse_lazy('account_book:todo')
+    success_url = reverse_lazy('account_book:index')
 
     def form_valid(self, form):
         valid = super(CreateUserView, self).form_valid(form)

@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-{% block title %}ToDoの編集{% endblock title %}
-{% block content %}
+{% block title %}ToDo{% endblock title %}
+{% block pageHeaderTitle %}ToDoの編集{% endblock pageHeaderTitle %}
+{% block pageHeaderSubTitle %}sample{% endblock pageHeaderSubTitle %}
+{% block mainContent %}
   {% if todo_id %}
   <form action="{% url 'account_book:todo_mod' todo_id=todo_id %}" method="post" class="form-horizontal" role="form">
   {% else %}
   <form action="{% url 'account_book:todo_add' %}" method="post" class="form-horizontal" role="form">
   {% endif %}
   {{ todo.user.id }}
-  <h3 class="page-header">ToDoの編集</h3>
     {% csrf_token %}
     {{ form }}
     <p class="help-block">※注意文言はこんな感じで出せる</p>
@@ -21,4 +22,4 @@
   {% if todo_id %}
   <a href="{% url 'account_book:todo_del' todo_id=todo_id %}" class="btn btn-default btn-sm">削除</a>
   {% endif %}
-{% endblock content %}
+{% endblock mainContent %}

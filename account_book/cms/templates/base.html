@@ -34,7 +34,7 @@
   <!-- Main Header -->
   <header class="main-header">
     <!-- Logo -->
-    <a href="{% url 'account_book:link' %}" class="logo">
+    <a href="{% url 'account_book:index' %}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -151,7 +151,7 @@
         <div class="pull-left info">
           <p>{{ user.username }}</p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
         </div>
       </div>
 
@@ -171,7 +171,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <!-- Optionally, you can add icons to the links -->
-        <li><a href="{% url 'account_book:link' %}"><i class="fa fa-link"></i> <span>Link</span></a></li>
+        <li><a href="{% url 'account_book:index' %}"><i class="fa fa-link"></i> <span>Index</span></a></li>
         <li><a href="{% url 'account_book:todo' %}"><i class="fa fa-link"></i> <span>ToDo</span></a></li>
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>active dummy link</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>dummy link</span></a></li>
@@ -201,7 +201,7 @@
         <small>{% block pageHeaderSubTitle %}Page Header Sub Title{% endblock pageHeaderSubTitle %}</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>Level</a></li>
         <li class="active">Here</li>
       </ol>
     </section>

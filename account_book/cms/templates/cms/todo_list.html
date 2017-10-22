@@ -1,16 +1,9 @@
 {% extends "base.html" %}
-{% block title %}ToDoリスト{% endblock title %}
-{% block extrahead %}
-<style>
-table {
-  margin-top: 8px;
-}
-</style>
-{% endblock %}
-{% block content %}
-  <h3 class="page-header">ToDoリスト</h3>
+{% block title %}ToDo{% endblock title %}
+{% block pageHeaderTitle %}ToDo{% endblock pageHeaderTitle %}
+{% block pageHeaderSubTitle %}sample{% endblock pageHeaderSubTitle %}
+{% block mainContent %}
   <a href="{% url 'account_book:todo_create' %}" class="btn btn-default btn-sm">追加</a>
-  <a href="{% url 'accounts:logout' %}" class="btn btn-default btn-sm">ログアウト</a>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -65,5 +58,4 @@ table {
     {% endif %}
   </ul>
   {% endif %}
-
-{% endblock content %}
+{% endblock mainContent %}
