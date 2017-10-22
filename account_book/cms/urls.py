@@ -6,6 +6,7 @@ from cms.views.todo_create_view import ToDoCreateView
 from cms.views import view
 
 urlpatterns = [
+    url(r'^$', IndexView.as_view(), name='index'),
     url(r'^index/$', IndexView.as_view(), name='index'),
     url(r'^todo/$', ToDoView.as_view(), name='todo'),
     url(r'^todo/detail/(?P<pk>\d+)$', ToDoDatailView.as_view(), name='todo_detail'),

@@ -6,17 +6,24 @@ viewクラスを作成する際はこのクラス内に定義されているク�
 """
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView
 from django.contrib import messages
 from django.contrib.auth.models import User
 
 
 @method_decorator(login_required, name='dispatch')
+class CommonTemplateView(TemplateView):
+    """TemplateViewクラス用の共通定義"""
+
+    pass
+
+
+@method_decorator(login_required, name='dispatch')
 class CommonListView(ListView):
     """ListViewクラス用の共通定義"""
 
-    paginate_by = 8
+    paginate_by = 16
 
 
 @method_decorator(login_required, name='dispatch')

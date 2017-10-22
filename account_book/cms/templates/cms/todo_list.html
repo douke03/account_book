@@ -3,59 +3,70 @@
 {% block pageHeaderTitle %}ToDo{% endblock pageHeaderTitle %}
 {% block pageHeaderSubTitle %}sample{% endblock pageHeaderSubTitle %}
 {% block mainContent %}
-  <a href="{% url 'account_book:todo_create' %}" class="btn btn-default btn-sm">追加</a>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>対応状況</th>
-        <th>作成日</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for todo in object_list %}
-      <tr>
-        <td>
-          <p>
-          {% if todo.is_complete == True %}
-          <span class="label label-primary">対応済み</span>
-          {% else %}
-          <span class="label label-warning">未対応</span>
-          {% endif %}
-          </p>
-          <a href="{% url 'account_book:todo_detail' pk=todo.id %}">
-          {{ todo.title }}
-        </a>
-        </td>
-        <td>
-          {{ todo.situation }}
-        </td>
-        <td>
-          {{ todo.created_at }}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% if is_paginated %}
-  <ul class="pagination">
-    {% if page_obj.has_previous %}
-    <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-    <li class="disabled"><a href="#">&laquo;</a></li>
-    {% endif %}
-    {% for linkpage in page_obj.paginator.page_range %}
-    {% ifequal linkpage page_obj.number %}
-    <li class="active"><a href="#">{{ linkpage }}</a></li>
-    {% else %}
-    <li><a href="?page={{ linkpage }}">{{ linkpage }}</a></li>
-    {% endifequal %}
-    {% endfor %}
-    {% if page_obj.has_next %}
-    <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-    {% else %}
-    <li class="disabled"><a href="#">&raquo;</a></li>
-    {% endif %}
-  </ul>
-  {% endif %}
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box">
+          <div class="box-body">
+            <table class="table table-bordered">
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>タイトル</th>
+                <th>期限</th>
+              </tr>
+              {% for todo in object_list %}
+              <tr>
+                <td>
+                {% if not todo.is_complete %}
+                  {% if todo.priority <= 3 %}
+                    <span class="badge bg-red">{{ todo.id }}</span>
+                  {% else %}
+                    <span class="badge bg-blue">{{ todo.id }}</span>
+                  {% endif %}
+                {% else %}
+                  <span class="badge bg-gray">{{ todo.id }}</span>
+                {% endif %}
+                </td>
+                <td>
+                  <a href="{% url 'account_book:todo_detail' pk=todo.id %}">{{ todo.title }}</a>
+                </td>
+                <td>{{ todo.deadline }}</td>
+              {% endfor %}
+              </tr>
+            </table>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer clearfix">
+            <a href="{% url 'account_book:todo_create' %}" class="btn btn-default btn-sm">新規作成</a>
+            {% if is_paginated %}
+            <ul class="pagination pagination-sm no-margin pull-right">
+              {% if page_obj.has_previous %}
+                <li><a href="?page=1">&laquo;</a></li>
+              {% else %}
+                <li class="disabled"><a href="#">&laquo;</a></li>
+              {% endif %}
+              {% for linkpage in page_obj.paginator.page_range %}
+                {% ifequal linkpage page_obj.number %}
+                  <li class="active"><a href="#">{{ linkpage }}</a></li>
+                {% else %}
+                  <li><a href="?page={{ linkpage }}">{{ linkpage }}</a></li>
+                {% endifequal %}
+              {% endfor %}
+              {% if page_obj.has_next %}
+                <li><a href="?page=last">&raquo;</a></li>
+              {% else %}
+                <li class="disabled"><a href="#">&raquo;</a></li>
+              {% endif %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+        <!-- /.box -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
 {% endblock mainContent %}
