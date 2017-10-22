@@ -16,10 +16,13 @@ class ToDo(MasterField):
     )
     title = models.TextField('タイトル', validators=[MaxLengthValidator(32)])
     text = models.TextField('内容', blank=True)
-    situation = models.TextField(
-        '対応状況', validators=[MaxLengthValidator(32)], blank=True)
+    correspondence_contents = models.TextField(
+        '対応内容', validators=[MaxLengthValidator(64)], blank=True)
+    correspondence_situation = models.TextField(
+        '対応状況', validators=[MaxLengthValidator(64)], blank=True)
     priority = models.IntegerField('優先度', choices=PRIORITY_CHOICES, default=4)
     deadline = models.DateField('期限', blank=True, null=True)
+    resolved_date = models.DateField('解決日', blank=True, null=True)
     is_complete = models.BooleanField('完了', default=False)
 
     class Meta:

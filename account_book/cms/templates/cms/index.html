@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock title %}
+{% block navDashbord %}active{% endblock navDashbord %}
 {% block pageHeaderTitle %}Indexページ{% endblock pageHeaderTitle %}
 {% block pageHeaderSubTitle %}創意制作中{% endblock pageHeaderSubTitle %}
 {% block mainContent %}
@@ -27,6 +28,8 @@
                   <p>pythonの勉強しよう</p>
                   <p>見た目にわかりやすいwebアプリ作ろう　←今ここ</p>
                   <p>webアプリ作ったしAWS乗せよう　←まだ</p>
+                  <p>　</p>
+                  <small>アプリ名は家計簿なのに家計簿要素は0</small>
                 </div>
               </div>
             </div>
@@ -59,17 +62,23 @@
   <!-- END ACCORDION & CAROUSEL-->
 
   <!-- social buttons -->
-  <div class="box">
+  <div class="box box-primary">
     <div class="box-header">
       <h3 class="box-title">Link List
       </h3>
     </div>
     <div class="box-body">
       <a class="btn btn-block btn-github" href={{ link_admin }} target="_blank" style="text-align: left;">
-        Django 管理サイト
+        Django 管理サイト（WANから接続の場合）
+      </a>
+      <a class="btn btn-block btn-github" href="http://192.168.10.5:8000/admin/" target="_blank" style="text-align: left;">
+        Django 管理サイト（LANから接続の場合）
       </a>
       <a class="btn btn-block btn-social btn-github" href={{ link_code }} target="_blank" >
         <i class="fa fa-github"></i>ソースコード
+      </a>
+      <a class="btn btn-block btn-github" href="https://adminlte.io/themes/AdminLTE/index.html" target="_blank" style="text-align: left;">
+        参考リンク（AdminLTE）
       </a>
     </div>
   </div>

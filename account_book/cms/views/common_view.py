@@ -40,12 +40,8 @@ class CommonCreateView(CreateView):
     def form_valid(self, form):
         """form_valid"""
         obj = form.save(commit=False)
-        if obj.id:
-            obj.updated_by = User.objects.get(pk=self.request.user.id)
-            messages.success(self.request, "更新しました")
-        else:
-            obj.created_by = User.objects.get(pk=self.request.user.id)
-            messages.success(self.request, "作成しました")
+        obj.created_by = User.objects.get(pk=self.request.user.id)
+        messages.success(self.request, "作成しました")
         return super().form_valid(form)
 
     def form_invalid(self, form):

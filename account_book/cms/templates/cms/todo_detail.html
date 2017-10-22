@@ -1,44 +1,56 @@
 {% extends "base.html" %}
 {% block title %}ToDo{% endblock title %}
+{% block navToDo %}active{% endblock navToDo %}
 {% block pageHeaderTitle %}{{ todo.title }}{% endblock pageHeaderTitle %}
-{% block pageHeaderSubTitle %}sample{% endblock pageHeaderSubTitle %}
-{% block mainContent %}
-  <p>
+{% block pageHeaderSubTitle %}
   {% if todo.is_complete == True %}
-  <span class="label label-primary">対応済み</span>
+    <span class="label label-primary">対応済み</span>
   {% else %}
-  <span class="label label-warning">未対応</span>
+    <span class="label label-danger">優先度：{{ todo.get_priority_display }}</span>
   {% endif %}
-  </p>
-  <div>
-    <textarea class="form-control" id="InputTextarea" rows="10" readonly>{{ todo.text }}</textarea>
+{% endblock pageHeaderSubTitle %}
+{% block mainContent %}
+  <div class="box box-primary">
+    <div class="box-body">
+      <div class="form-group">
+        <label>内容</label>
+        <textarea class="form-control" rows="" readonly>{{ todo.text }}</textarea>
+      </div>
+      <div class="form-group">
+        <label>対応内容</label>
+        <textarea class="form-control" rows="" readonly>{{ todo.correspondence_contents }}</textarea>
+      </div>
+      <div class="form-group">
+        <label>対応状況</label>
+        <textarea class="form-control" rows="" readonly>{{ todo.correspondence_situation }}</textarea>
+      </div>
+      <table class="table table-bordered">
+          <tr>
+            <td>報告者</td>
+            <td>{{ todo.created_by }}</td>
+          </tr>
+          <tr>
+            <td>報告日</td>
+            <td>{{ todo.created_at }}</td>
+          </tr>
+          {% if todo.updated_by %}
+          <tr>
+            <td>更新者</td>
+            <td>{{ todo.updated_by }}</td>
+          </tr>
+          <tr>
+            <td>更新日</td>
+            <td>{{ todo.updated_at }}</td>
+          </tr>
+          {% endif %}
+      </table>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+      <a href="{% url 'account_book:todo' %}" class="btn btn-default btn-sm">戻る</a>
+      <a href="{% url 'account_book:todo_mod' todo_id=todo.id %}" class="btn btn-default btn-sm">修正</a>
+    </div>
+    <!-- /.box-footer -->
   </div>
-  <table class="table table-bordered">
-    <tbody>
-      <tr>
-        <td>対応状況</td>
-        <td>{{ todo.situation }}</td>
-      </tr>
-      <tr>
-        <td>作成者</td>
-        <td>{{ todo.created_by }}</td>
-      </tr>
-      <tr>
-        <td>作成日</td>
-        <td>{{ todo.created_at }}</td>
-      </tr>
-      {% if todo.updated_by %}
-      <tr>
-        <td>更新者</td>
-        <td>{{ todo.updated_by }}</td>
-      </tr>
-      <tr>
-        <td>更新日</td>
-        <td>{{ todo.updated_at }}</td>
-      </tr>
-      {% endif %}
-    </tbody>
-  </table>
-  <a href="{% url 'account_book:todo' %}" class="btn btn-default btn-sm">戻る</a>
-  <a href="{% url 'account_book:todo_mod' todo_id=todo.id %}" class="btn btn-default btn-sm">修正</a>
+  <!-- /.box -->
 {% endblock mainContent %}
