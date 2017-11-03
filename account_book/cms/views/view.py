@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from cms.models.todo_model import ToDo
-from cms.forms import ToDoForm
+from cms.forms.todo.todo_form import ToDoForm
 
 
 def todo_edit(request, todo_id=None):
@@ -22,7 +22,7 @@ def todo_edit(request, todo_id=None):
     else:
         form = ToDoForm(instance=todo)
 
-    return render(request, 'cms/todo_edit.html', dict(form=form, todo_id=todo_id))
+    return render(request, 'cms/todo/todo_edit.html', dict(form=form, todo_id=todo_id))
 
 
 def todo_del(request, todo_id):

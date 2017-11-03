@@ -1,8 +1,8 @@
 from django.conf.urls import url
 from cms.views.index import IndexView
-from cms.views.todo_view import ToDoView
-from cms.views.todo_detail_view import ToDoDatailView
-from cms.views.todo_create_view import ToDoCreateView
+from cms.views.todo.todo_view import ToDoView
+from cms.views.todo.todo_detail_view import ToDoDatailView
+from cms.views.todo.todo_create_view import ToDoCreateView
 from cms.views import view
 
 urlpatterns = [
