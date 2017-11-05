@@ -14,17 +14,29 @@
     <div class="box-body">
       <div class="form-group">
         <label>内容</label>
-        <textarea class="form-control" rows="" readonly>{{ todo.text }}</textarea>
+        <textarea class="form-control" readonly>{{ todo.text }}</textarea>
       </div>
       <div class="form-group">
         <label>対応内容</label>
-        <textarea class="form-control" rows="" readonly>{{ todo.correspondence_contents }}</textarea>
+        <textarea class="form-control" readonly>{{ todo.correspondence_contents }}</textarea>
       </div>
       <div class="form-group">
         <label>対応状況</label>
-        <textarea class="form-control" rows="" readonly>{{ todo.correspondence_situation }}</textarea>
+        <textarea class="form-control" readonly>{{ todo.correspondence_situation }}</textarea>
       </div>
       <table class="table table-bordered">
+          {% if todo.deadline %}
+          <tr>
+            <td>締切</td>
+            <td>{{ todo.deadline }}</td>
+          </tr>
+          {% endif %}
+          {% if todo.resolved_date %}
+          <tr>
+            <td>解決日</td>
+            <td>{{ todo.resolved_date }}</td>
+          </tr>
+          {% endif %}
           <tr>
             <td>報告</td>
             <td>{{ todo.created_by }}</td>
@@ -47,8 +59,8 @@
     </div>
     <!-- /.box-body -->
     <div class="box-footer">
-      <a href="{% url 'account_book:todo' %}" class="btn btn-default btn-sm">戻る</a>
-      <a href="{% url 'account_book:todo_mod' todo_id=todo.id %}" class="btn btn-default btn-sm">修正</a>
+      <a href="{% url 'account_book:todo' %}" class="btn btn-default">戻る</a>
+      <a href="{% url 'account_book:todo_edit' pk=todo.id %}" class="btn btn-default">修正</a>
     </div>
     <!-- /.box-footer -->
   </div>

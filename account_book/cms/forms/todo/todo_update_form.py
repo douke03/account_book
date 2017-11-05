@@ -2,7 +2,7 @@ from django import forms
 from cms.models.todo_model import ToDo
 
 
-class ToDoForm(forms.ModelForm):
+class ToDoUpdateForm(forms.ModelForm):
 
     class Meta:
         model = ToDo
@@ -20,9 +20,9 @@ class ToDoForm(forms.ModelForm):
             'priority': forms.Select(
                 attrs={'class': 'form-control'}),
             'deadline': forms.DateInput(
-                attrs={'class': 'form-control', }),
+                attrs={'class': 'form-control datepicker', }),
             'resolved_date': forms.DateInput(
-                attrs={'class': 'form-control', }),
+                attrs={'class': 'form-control datepicker', }),
             'is_complete': forms.CheckboxInput(
                 attrs={'class': ''}),
         }

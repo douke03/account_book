@@ -318,15 +318,21 @@
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
 <!-- bootstrap datepicker -->
 <script src="{% static 'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.ja.js' %}"></script>
+<!-- autosize -->
+<script src="{% static 'js/autosize.min.js' %}"></script>
 <!-- Page script -->
 <script>
   $(function () {
     //Date picker
-    $('#datepicker').datepicker({
+    $('.datepicker').datepicker({
+      language: 'ja',
       format: 'yyyy-mm-dd',
-      autoclose: true
-    })
+      autoclose: true,
+    });
   })
+  //autosize
+  autosize($('textarea'));
 </script>
 </body>
 </html>

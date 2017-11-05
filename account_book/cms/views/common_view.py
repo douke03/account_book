@@ -7,9 +7,10 @@ viewクラスを作成する際はこのクラス内に定義されているク�
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, ListView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.contrib import messages
 from django.contrib.auth.models import User
+from datetime import datetime
 
 
 @method_decorator(login_required, name='dispatch')
@@ -27,8 +28,8 @@ class CommonListView(ListView):
 
 
 @method_decorator(login_required, name='dispatch')
-class CommonDatailView(DetailView):
-    """DatailViewクラス用の共通定義"""
+class CommonDetailView(DetailView):
+    """DetailViewクラス用の共通定義"""
 
     pass
 
@@ -41,10 +42,29 @@ class CommonCreateView(CreateView):
         """form_valid"""
         obj = form.save(commit=False)
         obj.created_by = User.objects.get(pk=self.request.user.id)
-        messages.success(self.request, "作成しました")
+        obj.created_at = datetime.now()
+        messages.success(self.request, "登録しました")
         return super().form_valid(form)
 
     def form_invalid(self, form):
         """form_invalid"""
-        messages.warning(self.request, "作成できませんでした")
+        messages.warning(self.request, "登録できませんでした")
+        return super().form_invalid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class CommonUpdateView(UpdateView):
+    """UpdateViewクラス用の共通定義"""
+
+    def form_valid(self, form):
+        """form_valid"""
+        obj = form.save(commit=False)
+        obj.updated_by = User.objects.get(pk=self.request.user.id)
+        obj.updated_at = datetime.now()
+        messages.success(self.request, "更新しました")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        """form_invalid"""
+        messages.warning(self.request, "更新できませんでした")
         return super().form_invalid(form)

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}ToDo{% endblock title %}
 {% block navToDo %}active{% endblock navToDo %}
-{% block pageHeaderTitle %}ToDoの追加{% endblock pageHeaderTitle %}
+{% block pageHeaderTitle %}ToDoの編集{% endblock pageHeaderTitle %}
 {% block pageHeaderSubTitle %}sample{% endblock pageHeaderSubTitle %}
 {% block mainContent %}
   {% if messages %}
@@ -50,11 +50,28 @@
           </div>
           {{ form.deadline.errors }}
         </div>
+        <div class="form-group">
+          <label>解決日</label>
+          <div class="input-group date">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            {{ form.resolved_date }}
+          </div>
+          {{ form.resolved_date.errors }}
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              {{ form.is_complete }}完了
+            </label>
+          </div>
+        </div>
       </div>
       <!-- /.box-body -->
       <div class="box-footer">
         <a href="{% url 'account_book:todo' %}" class="btn btn-default">戻る</a>
-        <input type="submit" class="btn btn-primary pull-right" value="登録">
+        <input type="submit" class="btn btn-primary pull-right" value="更新">
       </div>
     </form>
   </div>
