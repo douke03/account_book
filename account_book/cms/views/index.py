@@ -3,7 +3,7 @@ from cms.views.common_view import CommonTemplateView
 
 class IndexView(CommonTemplateView):
 
-    template_name = 'cms/index.html'
+    template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
 

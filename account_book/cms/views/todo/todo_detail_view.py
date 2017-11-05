@@ -3,5 +3,5 @@ from cms.models.todo_model import ToDo
 
 
 class ToDoDatailView(CommonDetailView):
-    template_name = 'cms/todo/todo_detail.html'
+    template_name = 'todo/todo_detail.html'
     model = ToDo

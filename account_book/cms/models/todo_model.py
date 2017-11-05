@@ -31,3 +31,9 @@ class ToDo(MasterField):
 
     def __str__(self):
         return self.title
+
+    def delete(self, *args, **kwargs):
+        self.is_active = False
+        self.updated_by = kwargs['user']
+        self.updated_at = kwargs['now']
+        self.save()

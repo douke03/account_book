@@ -1,13 +1,22 @@
+from django.contrib import messages
 from django.contrib.auth.models import User
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 from cms.models.todo_model import ToDo
-from cms.forms.todo.todo_form import ToDoForm
+from datetime import datetime
 
 
-def todo_del(request, todo_id):
+def todo_del(request, pk):
     """ToDoの削除"""
 
-    todo = get_object_or_404(ToDo, pk=todo_id)
-    todo.delete()
+    todo = get_object_or_404(ToDo, pk=pk)
+    if todo.is_complete == True:
+        todo.delete(
+            user=User.objects.get(pk=request.user.id),
+            now=datetime.now()
+        )
+        messages.success(request, '削除しました')
+        return redirect('account_book:todo')
+    else:
 
-    return redirect('account_book:todo')
+        messages.success(request, '削除しませんでした')
+        return redirect('account_book:todo')

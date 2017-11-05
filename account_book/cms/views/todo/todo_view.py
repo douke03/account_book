@@ -3,7 +3,7 @@ from cms.models.todo_model import ToDo
 
 
 class ToDoView(CommonListView):
-    template_name = 'cms/todo/todo.html'
+    template_name = 'todo/todo.html'
     model = ToDo
 
     def get_queryset(self):

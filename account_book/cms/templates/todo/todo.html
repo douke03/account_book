@@ -10,9 +10,9 @@
         <div class="box">
           <div class="box-header">
             {% if messages %}
-            {% for message in messages %}
-            <label {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</label>
-            {% endfor %}
+              {% for message in messages %}
+                <label {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</label>
+              {% endfor %}
             {% endif %}
             <a href="{% url 'account_book:todo_create' %}" class="btn btn-primary pull-right">新規作成</a>
           </div>
@@ -25,30 +25,30 @@
                 <th>期限</th>
               </tr>
               {% for todo in object_list %}
-              <tr>
-                <td>
-                {% if not todo.is_complete %}
-                  {% if todo.priority <= 3 %}
-                    <span class="badge bg-red">{{ todo.id }}</span>
+                <tr>
+                  <td>
+                  {% if not todo.is_complete %}
+                    {% if todo.priority <= 3 %}
+                      <span class="badge bg-red">{{ todo.id }}</span>
+                    {% else %}
+                      <span class="badge bg-blue">{{ todo.id }}</span>
+                    {% endif %}
                   {% else %}
-                    <span class="badge bg-blue">{{ todo.id }}</span>
+                    <span class="badge bg-gray">{{ todo.id }}</span>
                   {% endif %}
-                {% else %}
-                  <span class="badge bg-gray">{{ todo.id }}</span>
-                {% endif %}
-                </td>
-                <td>
-                  <a href="{% url 'account_book:todo_detail' pk=todo.id %}">{{ todo.title }}</a>
-                </td>
-                <td>{{ todo.deadline }}</td>
-              {% endfor %}
+                  </td>
+                  <td>
+                    <a href="{% url 'account_book:todo_detail' pk=todo.id %}">{{ todo.title }}</a>
+                  </td>
+                  <td>{{ todo.deadline }}</td>
+                {% endfor %}
               </tr>
             </table>
           </div>
           <!-- /.box-body -->
           <div class="box-footer">
             {% if is_paginated %}
-            <ul class="pagination pagination-sm no-margin pull-right">
+              <ul class="pagination pagination-sm no-margin pull-right">
               {% if page_obj.has_previous %}
                 <li><a href="?page=1">&laquo;</a></li>
               {% else %}
@@ -66,7 +66,7 @@
               {% else %}
                 <li class="disabled"><a href="#">&raquo;</a></li>
               {% endif %}
-            </ul>
+              </ul>
             {% endif %}
           </div>
           <!-- /.box-footer -->

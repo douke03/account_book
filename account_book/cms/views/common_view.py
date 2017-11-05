@@ -7,7 +7,7 @@ viewクラスを作成する際はこのクラス内に定義されているク�
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.contrib.auth.models import User
 from datetime import datetime
@@ -43,12 +43,12 @@ class CommonCreateView(CreateView):
         obj = form.save(commit=False)
         obj.created_by = User.objects.get(pk=self.request.user.id)
         obj.created_at = datetime.now()
-        messages.success(self.request, "登録しました")
+        messages.success(self.request, '登録しました')
         return super().form_valid(form)
 
     def form_invalid(self, form):
         """form_invalid"""
-        messages.warning(self.request, "登録できませんでした")
+        messages.warning(self.request, '登録できませんでした')
         return super().form_invalid(form)
 
 
@@ -61,10 +61,18 @@ class CommonUpdateView(UpdateView):
         obj = form.save(commit=False)
         obj.updated_by = User.objects.get(pk=self.request.user.id)
         obj.updated_at = datetime.now()
-        messages.success(self.request, "更新しました")
+        messages.success(self.request, '更新しました')
         return super().form_valid(form)
 
     def form_invalid(self, form):
         """form_invalid"""
-        messages.warning(self.request, "更新できませんでした")
+        messages.warning(self.request, '更新できませんでした')
         return super().form_invalid(form)
+
+
+@method_decorator(login_required, name='dispatch')
+class CommonDeleteView(DeleteView):
+    """DeleteViewクラス用の共通定義"""
+
+    def form_valid(self, form):
+        messages.success(self.request, '削除しました')

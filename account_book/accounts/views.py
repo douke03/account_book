@@ -11,7 +11,7 @@ def root_url(request):
 
 
 class CreateUserView(CreateView):
-    template_name = 'accounts/register.html'
+    template_name = 'register.html'
     form_class = RegisterForm
     success_url = reverse_lazy('account_book:index')
 

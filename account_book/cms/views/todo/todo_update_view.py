@@ -4,6 +4,6 @@ from cms.forms.todo.todo_update_form import ToDoUpdateForm
 
 
 class ToDoUpdateView(CommonUpdateView):
-    template_name = 'cms/todo/todo_update.html'
+    template_name = 'todo/todo_update.html'
     success_url = reverse_lazy('account_book:todo')
     form_class = ToDoUpdateForm

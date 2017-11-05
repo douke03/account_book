@@ -3,10 +3,14 @@
 {% block navToDo %}active{% endblock navToDo %}
 {% block pageHeaderTitle %}{{ todo.title }}{% endblock pageHeaderTitle %}
 {% block pageHeaderSubTitle %}
-  {% if todo.is_complete == True %}
-    <span class="label label-primary">対応済み</span>
+  {% if todo.is_complete %}
+    <span class="label label-default">対応済み</span>
   {% else %}
-    <span class="label label-danger">優先度：{{ todo.get_priority_display }}</span>
+    {% if todo.priority < 4 %}
+      <span class="label label-danger">優先度：{{ todo.get_priority_display }}</span>
+    {% else %}
+      <span class="label label-primary">優先度：{{ todo.get_priority_display }}</span>
+    {% endif %}
   {% endif %}
 {% endblock pageHeaderSubTitle %}
 {% block mainContent %}
@@ -26,16 +30,16 @@
       </div>
       <table class="table table-bordered">
           {% if todo.deadline %}
-          <tr>
-            <td>締切</td>
-            <td>{{ todo.deadline }}</td>
-          </tr>
+            <tr>
+              <td>締切</td>
+              <td>{{ todo.deadline }}</td>
+            </tr>
           {% endif %}
           {% if todo.resolved_date %}
-          <tr>
-            <td>解決日</td>
-            <td>{{ todo.resolved_date }}</td>
-          </tr>
+            <tr>
+              <td>解決日</td>
+              <td>{{ todo.resolved_date }}</td>
+            </tr>
           {% endif %}
           <tr>
             <td>報告</td>
@@ -46,14 +50,14 @@
             <td>{{ todo.created_at }}</td>
           </tr>
           {% if todo.updated_by %}
-          <tr>
-            <td>更新</td>
-            <td>{{ todo.updated_by }}</td>
-          </tr>
-          <tr>
-            <td>更新日</td>
-            <td>{{ todo.updated_at }}</td>
-          </tr>
+            <tr>
+              <td>更新</td>
+              <td>{{ todo.updated_by }}</td>
+            </tr>
+            <tr>
+              <td>更新日</td>
+              <td>{{ todo.updated_at }}</td>
+            </tr>
           {% endif %}
       </table>
     </div>
