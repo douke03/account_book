@@ -4,12 +4,13 @@ from cms.views.todo.todo_view import ToDoView
 from cms.views.todo.todo_detail_view import ToDoDatailView
 from cms.views.todo.todo_create_view import ToDoCreateView
 from cms.views import view
+from cms.models.todo_model import ToDo
 
 urlpatterns = [
     url(r'^$', IndexView.as_view()),
     url(r'^index/$', IndexView.as_view(), name='index'),
     url(r'^todo/$', ToDoView.as_view(), name='todo'),
-    url(r'^todo/detail/(?P<pk>\d+)$', ToDoDatailView.as_view(), name='todo_detail'),
+    url(r'^todo/detail/(?P<pk>\d+)$', ToDoDatailView.as_view(model=ToDo), name='todo_detail'),
     url(r'^todo/create/$', ToDoCreateView.as_view(), name='todo_create'),
     url(r'^todo/add/$', view.todo_edit, name='todo_add'),
     url(r'^todo/mod/(?P<todo_id>\d+)/$', view.todo_edit, name='todo_mod'),

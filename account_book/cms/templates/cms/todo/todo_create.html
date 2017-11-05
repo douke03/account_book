@@ -12,41 +12,51 @@
   {% endfor %}
   {% endif %}
   <div class="box box-primary">
-    <div class="box-body">
-      <form method="post" role="form">
-      {% csrf_token %}
+    <form method="post" role="form">
+    {% csrf_token %}
+      <div class="box-body">
         <div class="form-group">
           <label>タイトル</label>
           {{ form.title }}
+          {{ form.title.errors }}
         </div>
         <div class="form-group">
           <label>内容</label>
           {{ form.text }}
+          {{ form.text.errors }}
         </div>
         <div class="form-group">
           <label>対応内容</label>
           {{ form.correspondence_contents }}
+          {{ form.correspondence_contents.errors }}
         </div>
         <div class="form-group">
           <label>対応状況</label>
           {{ form.correspondence_situation }}
-        </div>
-        <div class="form-group">
-          <div class="checkbox">
-            <label>
-              {{ form.is_complete }}完了
-            </label>
-          </div>
+          {{ form.correspondence_situation.errors }}
         </div>
         <div class="form-group">
           <label>優先度</label>
           {{ form.priority }}
+          {{ form.priority.errors }}
         </div>
-      <a href="{% url 'account_book:todo' %}" class="btn btn-default">戻る</a>
-      <input type="submit" class="btn btn-primary pull-right" value="登録">
-      </form>
-    </div>
-    <!-- /.box-body -->
+        <div class="form-group">
+          <label>期限</label>
+          <div class="input-group date">
+            <div class="input-group-addon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            {{ form.deadline }}
+          </div>
+          {{ form.deadline.errors }}
+        </div>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <a href="{% url 'account_book:todo' %}" class="btn btn-default">戻る</a>
+        <input type="submit" class="btn btn-primary pull-right" value="登録">
+      </div>
+    </form>
   </div>
   <!-- /.box -->
 {% endblock mainContent %}
