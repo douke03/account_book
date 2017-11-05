@@ -4,27 +4,6 @@ from cms.models.todo_model import ToDo
 from cms.forms.todo.todo_form import ToDoForm
 
 
-def todo_edit(request, todo_id=None):
-    """ToDoの編集"""
-
-    if todo_id:
-        todo = get_object_or_404(ToDo, pk=todo_id)
-    else:
-        todo = ToDo()
-
-    if request.method == 'POST':
-        form = ToDoForm(request.POST, instance=todo)
-        if form.is_valid():
-            todo = form.save(commit=False)
-            todo.created_by = User.objects.get(pk=request.user.id)
-            todo.save()
-            return redirect('account_book:todo')
-    else:
-        form = ToDoForm(instance=todo)
-
-    return render(request, 'cms/todo/todo_edit.html', dict(form=form, todo_id=todo_id))
-
-
 def todo_del(request, todo_id):
     """ToDoの削除"""
 
