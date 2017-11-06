@@ -1,19 +1,23 @@
-from django.core.urlresolvers import reverse_lazy
-from cms.views.common_view import CommonDeleteView
-from cms.models.todo_model import ToDo
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404, redirect
+from cms.models.todo_model import ToDo
+from datetime import datetime
 
 
-class ToDoDeleteView(CommonDeleteView):
-    model = ToDo
-    success_url = reverse_lazy('account_book:todo')
+class ToDoDeleteView():
 
     def delete(request, pk):
         """ToDoの削除"""
 
         todo = get_object_or_404(ToDo, pk=pk)
-        todo.delete(
-            user=User.objects.get(pk=request.user.id),
-            now=datetime.now()
-        )
-        return redirect('account_book:todo')
+        if todo.is_complete == True:
+            todo.delete(
+                user=User.objects.get(pk=request.user.id),
+                now=datetime.now()
+            )
+            messages.success(request, '削除しました')
+            return redirect('account_book:todo_list')
+        else:
+            messages.success(request, '削除しませんでした')
+            return redirect('account_book:todo_list')

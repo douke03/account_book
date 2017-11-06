@@ -10,3 +10,9 @@ class MasterField(CommonField):
 
     class Meta:
         abstract = True
+
+    def delete(self, *args, **kwargs):
+        self.is_active = False
+        self.updated_by = kwargs['user']
+        self.updated_at = kwargs['now']
+        self.save()

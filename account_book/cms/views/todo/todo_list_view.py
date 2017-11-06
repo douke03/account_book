@@ -2,8 +2,8 @@ from cms.views.common_view import CommonListView
 from cms.models.todo_model import ToDo
 
 
-class ToDoView(CommonListView):
-    template_name = 'todo/todo.html'
+class ToDoListView(CommonListView):
+    template_name = 'todo/todo_list.html'
     model = ToDo
 
     def get_queryset(self):

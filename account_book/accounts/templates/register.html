@@ -1,10 +1,6 @@
 {% extends "accounts_base.html" %}
 {% block title %}register{% endblock title %}
 {% block div %}
-<div class="register-box">
-  <div class="login-logo">
-    <a href="/"><b>Accounts Book</b></a>
-  </div>
   <div class="register-box-body">
     <p class="login-box-msg">Register a new membership</p>
     <form action="{% url 'accounts:register' %}" method="post">
@@ -37,7 +33,5 @@
     </form>
     <a href="{% url 'accounts:login' %}" class="text-center">I already have a membership</a>
   </div>
-  <!-- /.form-box -->
-</div>
-<!-- /.register-box -->
+  <!-- /.register-box -->
 {% endblock %}

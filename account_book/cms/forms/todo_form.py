@@ -20,9 +20,9 @@ class ToDoForm(forms.ModelForm):
             'priority': forms.Select(
                 attrs={'class': 'form-control'}),
             'deadline': forms.DateInput(
-                attrs={'class': 'form-control', }),
+                attrs={'class': 'form-control datepicker', 'type': 'tel', }),
             'resolved_date': forms.DateInput(
-                attrs={'class': 'form-control', }),
+                attrs={'class': 'form-control datepicker', 'type': 'tel', }),
             'is_complete': forms.CheckboxInput(
                 attrs={'class': ''}),
         }

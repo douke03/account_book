@@ -177,7 +177,7 @@
           <a href="{% url 'account_book:index' %}"><i class="fa fa-dashboard"></i><span>Dashbord</span></a>
         </li>
         <li class="{% block navToDo %}{% endblock navToDo %}">
-          <a href="{% url 'account_book:todo' %}"><i class="fa fa-list-ul"></i><span>ToDo</span></a>
+          <a href="{% url 'account_book:todo_list' %}"><i class="fa fa-list-ul"></i><span>ToDo</span></a>
         </li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i><span>dummy level</span>
@@ -204,10 +204,10 @@
         {% block pageHeaderTitle %}Page Header Title{% endblock pageHeaderTitle %}
         <small>{% block pageHeaderSubTitle %}Page Header Sub Title{% endblock pageHeaderSubTitle %}</small>
       </h1>
-      <ol class="breadcrumb">
+<!--       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Level</a></li>
         <li class="active">Here</li>
-      </ol>
+      </ol> -->
     </section>
 
     <!-- Main content -->

@@ -1,11 +1,6 @@
 {% extends "accounts_base.html" %}
 {% block title %}login{% endblock title %}
 {% block div %} 
-<div class="login-box">
-  <div class="login-logo">
-    <a href="/"><b>Accounts Book</b></a>
-  </div>
-  <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
     <form action="{% url 'accounts:login' %}" method="post">
@@ -31,7 +26,4 @@
     <a href="{% url 'accounts:register' %}" class="text-center">Register a new membership</a>
   </div>
   <!-- /.login-box-body -->
-</form>
-</div>
-<!-- /.login-box -->
 {% endblock %}
