@@ -19,5 +19,5 @@ class ToDoDeleteView():
             messages.success(request, '削除しました')
             return redirect('account_book:todo_list')
         else:
-            messages.success(request, '削除しませんでした')
+            messages.success(request, '削除できませんでした')
             return redirect('account_book:todo_list')

@@ -15,7 +15,7 @@ from datetime import datetime
 
 @method_decorator(login_required, name='dispatch')
 class CommonTemplateView(TemplateView):
-    """TemplateViewクラス用の共通定義"""
+    """TemplateViewの共通定義"""
 
     pass
 
@@ -29,17 +29,16 @@ class CommonListView(ListView):
 
 @method_decorator(login_required, name='dispatch')
 class CommonDetailView(DetailView):
-    """DetailViewクラス用の共通定義"""
+    """DetailViewの共通定義"""
 
     pass
 
 
 @method_decorator(login_required, name='dispatch')
 class CommonCreateView(CreateView):
-    """CreateViewクラス用の共通定義"""
+    """CreateViewの共通定義"""
 
     def form_valid(self, form):
-        """form_valid"""
         obj = form.save(commit=False)
         obj.created_by = User.objects.get(pk=self.request.user.id)
         obj.created_at = datetime.now()
@@ -47,17 +46,15 @@ class CommonCreateView(CreateView):
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        """form_invalid"""
         messages.warning(self.request, '登録できませんでした')
         return super().form_invalid(form)
 
 
 @method_decorator(login_required, name='dispatch')
 class CommonUpdateView(UpdateView):
-    """UpdateViewクラス用の共通定義"""
+    """UpdateViewの共通定義"""
 
     def form_valid(self, form):
-        """form_valid"""
         obj = form.save(commit=False)
         obj.updated_by = User.objects.get(pk=self.request.user.id)
         obj.updated_at = datetime.now()
@@ -65,14 +62,18 @@ class CommonUpdateView(UpdateView):
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        """form_invalid"""
         messages.warning(self.request, '更新できませんでした')
         return super().form_invalid(form)
 
 
 @method_decorator(login_required, name='dispatch')
 class CommonDeleteView(DeleteView):
-    """DeleteViewクラス用の共通定義"""
+    """DeleteViewの共通定義"""
 
-    def form_valid(self, form):
+    def delete(self, request, *args, **kwargs):
+        # obj = self.get_object()
+        # obj.updated_by = User.objects.get(pk=self.request.user.id)
+        # obj.updated_at = datetime.now()
+        # obj.delete()
         messages.success(self.request, '削除しました')
+        return super(CommonDeleteView, self).delete(request, *args, **kwargs)
