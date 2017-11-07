@@ -24,5 +24,5 @@ class ToDoForm(forms.ModelForm):
             'resolved_date': forms.DateInput(
                 attrs={'class': 'form-control datepicker', 'type': 'tel', }),
             'is_complete': forms.CheckboxInput(
-                attrs={'class': ''}),
+                attrs={'data-toggle': 'toggle', 'data-on': '完了', 'data-off': '未完了', }),
         }
