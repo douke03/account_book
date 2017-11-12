@@ -59,8 +59,8 @@
           <li class="dropdown tasks-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
+              <i class="fa fa-list-ul"></i>
+              <span class="label label-danger">{{ test }}</span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>
@@ -171,14 +171,15 @@
           <a href="{% url 'account_book:todo_list' %}"><i class="fa fa-list-ul"></i><span>ToDo</span></a>
         </li>
         <li class="treeview">
-          <a href="#"><i class="fa fa-link"></i><span>dummy level</span>
+          <a href="#"><i class="fa fa-link"></i><span>Link</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#">Link in level 1</a></li>
-            <li><a href="#">Link in level 2</a></li>
+            <li><a href={% url 'admin:index' %} target="_blank" >Django 管理サイト</a></li>
+            <li><a href={{ link_code }} target="_blank">ソースコード</a></li>
+            <li><a href={{ link_AdminLTE }} target="_blank">参考リンク（AdminLTE）</a></li>
           </ul>
         </li>
       </ul>
