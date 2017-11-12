@@ -1,4 +1,3 @@
-"""contet_processor."""
 from cms.models.todo_model import ToDo
 
 
