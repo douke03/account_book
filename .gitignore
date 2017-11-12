@@ -8,4 +8,4 @@
 #‚»‚Ì‘¼
 /account_book/*.sqlite3
 /pip-selfcheck.json
-wakeup.bat
+/wakeup.bat

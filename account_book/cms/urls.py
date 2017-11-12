@@ -5,7 +5,6 @@ from cms.views.todo.todo_detail_view import ToDoDatailView
 from cms.views.todo.todo_create_view import ToDoCreateView
 from cms.views.todo.todo_update_view import ToDoUpdateView
 from cms.views.todo.todo_delete_view import ToDoDeleteView
-from cms.models.todo_model import ToDo
 
 urlpatterns = [
     url(r'^$',
@@ -19,7 +18,7 @@ urlpatterns = [
     url(r'^todo/create/$',
         ToDoCreateView.as_view(), name='todo_create'),
     url(r'^todo/edit/(?P<pk>[\w-]+)/$',
-        ToDoUpdateView.as_view(model=ToDo), name='todo_update'),
+        ToDoUpdateView.as_view(), name='todo_update'),
     url(r'^todo/del/(?P<pk>[\w-]+)/$',
         ToDoDeleteView.delete, name='todo_delete'),
 ]
