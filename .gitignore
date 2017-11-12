@@ -1,9 +1,9 @@
 ###git管理対象外
 #ファイル
+*.pyc
 *.sqlite3
 *pip-selfcheck.json
 *wakeup.bat
-*.pyc
 #ディレクトリ
 /Include/
 /Lib/
