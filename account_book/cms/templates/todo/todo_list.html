@@ -20,27 +20,27 @@
           <div class="box-body">
             <table class="table table-bordered">
               <tr>
-                <th style="width: 10px"></th>
                 <th>タイトル</th>
                 <th>期限</th>
               </tr>
               {% for todo in object_list %}
                 <tr>
                   <td>
-                  {% if not todo.is_complete %}
-                    {% if todo.priority <= 3 %}
-                      <span class="badge bg-red">{{ todo.id }}</span>
-                    {% else %}
-                      <span class="badge bg-blue">{{ todo.id }}</span>
-                    {% endif %}
-                  {% else %}
-                    <span class="badge bg-gray">{{ todo.id }}</span>
-                  {% endif %}
+                    <a href="{% url 'account_book:todo_detail' pk=todo.id %}">
+                      {% if todo.is_complete %}
+                        <span class="label label-default">対応済み</span>
+                      {% else %}
+                        {% if todo.priority < 4 %}
+                          <span class="label label-danger">優先度：{{ todo.get_priority_display }}</span>
+                        {% else %}
+                          <span class="label label-primary">優先度：{{ todo.get_priority_display }}</span>
+                        {% endif %}
+                      {% endif %}
+                      <p></p>
+                      {{ todo.title }}
+                    </a>
                   </td>
-                  <td>
-                    <a href="{% url 'account_book:todo_detail' pk=todo.id %}">{{ todo.title }}</a>
-                  </td>
-                  <td>{{ todo.deadline }}</td>
+                  <td style="vertical-align: middle;">{{ todo.deadline }}</td>
                 {% endfor %}
               </tr>
             </table>
