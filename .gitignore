@@ -1,11 +1,12 @@
-###git管理外のファイル
+###git管理対象外
+#ファイル
+*.sqlite3
+*pip-selfcheck.json
+*wakeup.bat
+*.pyc
 #ディレクトリ
 /Include/
 /Lib/
 /Scripts/
 /static/
 /tcl/
-#その他
-/account_book/*.sqlite3
-/pip-selfcheck.json
-/wakeup.bat
