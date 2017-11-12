@@ -67,6 +67,7 @@
               <li>
                 <!-- Inner menu: contains the tasks -->
                 <ul class="menu">
+                  {% if unfinished_task_cnt > 0 %}
                   <li><!-- Task item -->
                     <a href="{% url 'account_book:todo_detail' pk=unfinished_task_title.id %}">
                       <!-- Task title and progress text -->
@@ -84,6 +85,7 @@
                       </div> -->
                     </a>
                   </li>
+                  {% endif%}
                   <!-- end task item -->
                 </ul>
               </li>
@@ -124,7 +126,7 @@
                   </div>
                 </div> -->
                 <!-- /.row -->
-              </li>
+<!--               </li> -->
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
@@ -137,9 +139,9 @@
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
-          <li>
+<!--           <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </nav>
