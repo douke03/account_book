@@ -7,4 +7,4 @@ class ToDoListView(CommonListView):
     model = ToDo
 
     def get_queryset(self):
-        return ToDo.objects.filter(is_active=True).order_by('is_complete', 'priority', 'id')
+        return ToDo.objects.filter(is_active=True).order_by('is_complete', 'priority', 'created_at')

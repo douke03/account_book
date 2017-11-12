@@ -1,4 +1,5 @@
 """this is model class"""
+import uuid
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -6,6 +7,7 @@ from django.contrib.auth.models import User
 class CommonField(models.Model):
     """共通フィールドを定義するためのクラス"""
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_by = models.ForeignKey(
         User, related_name='%(app_label)s_%(class)s_created_by', verbose_name='作成者')
     created_at = models.DateTimeField('作成日', blank=True, null=True)
