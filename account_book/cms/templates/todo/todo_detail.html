@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block title %}ToDo{% endblock title %}
 {% block navToDo %}active{% endblock navToDo %}
-{% block pageHeaderTitle %}{{ todo.title }}{% endblock pageHeaderTitle %}
-{% block pageHeaderSubTitle %}
+{% block pageHeaderTitle %}
+  <small>
   {% if todo.is_complete %}
     <span class="label label-default">対応済み</span>
   {% else %}
@@ -12,7 +12,11 @@
       <span class="label label-primary">優先度：{{ todo.get_priority_display }}</span>
     {% endif %}
   {% endif %}
-{% endblock pageHeaderSubTitle %}
+  </small>
+  <p></p>  
+  {{ todo.title }}
+{% endblock pageHeaderTitle %}
+{% block pageHeaderSubTitle %}{% endblock pageHeaderSubTitle %}
 {% block mainContent %}
   <div class="box box-primary">
     <div class="box-body">
