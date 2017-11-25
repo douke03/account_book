@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse_lazy
-from cms.views.common_view import CommonCreateView
 from cms.forms.todo_form import ToDoForm
+from cms.views.common_view import CommonCreateView
 
 
 class ToDoCreateView(CommonCreateView):

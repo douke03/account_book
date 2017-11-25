@@ -1,23 +1,14 @@
-from django.contrib import messages
-from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import redirect
 from cms.models.todo_model import ToDo
-from datetime import datetime
+from cms.views.common_view import CommonDelete
 
 
 class ToDoDeleteView():
 
     def delete(request, pk):
-        """ToDoの削除"""
-
-        todo = get_object_or_404(ToDo, pk=pk)
-        if todo.is_complete == True:
-            todo.delete(
-                user=User.objects.get(pk=request.user.id),
-                now=datetime.now()
-            )
-            messages.success(request, '削除しました')
+        view = CommonDelete(model=ToDo)
+        is_delete = view.delete(request, pk)
+        if is_delete:
             return redirect('account_book:todo_list')
         else:
-            messages.warning(request, '削除できませんでした')
             return redirect('account_book:todo_list')

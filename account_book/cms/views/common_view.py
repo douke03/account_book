@@ -4,13 +4,14 @@ viewクラスを作成する際はこのクラス内に定義されているク�
 共通化すべき定数、変数、メソッドは適宜追加する
 特殊な定数、変数、メソッド継承先メソッドに定義する
 """
+from datetime import datetime
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.contrib import messages
-from django.contrib.auth.models import User
-from datetime import datetime
 
 
 @method_decorator(login_required, name='dispatch')
@@ -70,10 +71,24 @@ class CommonUpdateView(UpdateView):
 class CommonDeleteView(DeleteView):
     """DeleteViewの共通定義"""
 
-    def delete(self, request, *args, **kwargs):
-        # obj = self.get_object()
-        # obj.updated_by = User.objects.get(pk=self.request.user.id)
-        # obj.updated_at = datetime.now()
-        # obj.delete()
-        messages.success(self.request, '削除しました')
-        return super(CommonDeleteView, self).delete(request, *args, **kwargs)
+    pass
+
+
+class CommonDelete():
+    """CommonDeleteの共通定義"""
+
+    def __init__(self, *args, **kwargs):
+        self.model = kwargs['model']
+
+    def delete(self, request, pk):
+        obj = get_object_or_404(self.model, pk=pk)
+        if obj.is_complete == True:
+            obj.delete(
+                user=User.objects.get(pk=request.user.id),
+                now=datetime.now()
+            )
+            messages.success(request, '削除しました')
+            return True
+        else:
+            messages.warning(request, '削除できませんでした')
+            return False

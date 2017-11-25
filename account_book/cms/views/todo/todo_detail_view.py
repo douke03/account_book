@@ -1,5 +1,5 @@
-from cms.views.common_view import CommonDetailView
 from cms.models.todo_model import ToDo
+from cms.views.common_view import CommonDetailView
 
 
 class ToDoDatailView(CommonDetailView):

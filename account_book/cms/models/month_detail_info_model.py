@@ -1,6 +1,6 @@
 """this is model class"""
-from django.db import models
 from datetime import datetime
+from django.db import models
 from cms.models.common_field_model import CommonField
 from cms.models.detail_item_model import DetailItem
 

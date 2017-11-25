@@ -1,7 +1,6 @@
 """this is model class"""
 from django.db import models
 from cms.models.master_field_model import MasterField
-from django.core.validators import MaxLengthValidator, MaxValueValidator, MinValueValidator
 
 
 class ToDo(MasterField):

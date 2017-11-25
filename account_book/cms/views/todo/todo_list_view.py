@@ -1,5 +1,5 @@
-from cms.views.common_view import CommonListView
 from cms.models.todo_model import ToDo
+from cms.views.common_view import CommonListView
 
 
 class ToDoListView(CommonListView):

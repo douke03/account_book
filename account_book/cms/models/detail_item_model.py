@@ -1,7 +1,7 @@
 """this is model class"""
 from django.db import models
-from cms.models.master_field_model import MasterField
 from cms.models.item_model import Item
+from cms.models.master_field_model import MasterField
 
 
 class DetailItem(MasterField):
