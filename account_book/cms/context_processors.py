@@ -3,9 +3,9 @@ from cms.models.todo_model import ToDo
 
 def common_process(request):
 
-    unfinished_todo_cnt = ToDo.objects.filter(
-        created_by=request.user, is_complete=False).count()
-    unfinished_todo = get_unfinished_todo(request)
+    user = request.user
+    unfinished_todo_cnt = get_unfinished_todo_cnt(user)
+    unfinished_todo = get_unfinished_todo(user)
 
     context = {
         'link_code': 'https://github.com/douke03/account_book/tree/master/account_book',
@@ -17,15 +17,23 @@ def common_process(request):
     return context
 
 
-def get_unfinished_todo(request):
+def get_unfinished_todo_cnt(user):
 
-    try:
-        if request.user.is_superuser:
-            return ToDo.objects.filter(
-                is_active=True, is_complete=False).order_by('priority', 'created_at')[:3]
-        else:
-            return ToDo.objects.filter(
-                created_by=request.user, is_active=True, is_complete=False).order_by(
-                'priority', 'created_at')[:3]
-    except:
+    if user.is_authenticated:
+        obj = ToDo.objects.filter(created_by=user,
+                                  is_active=True,
+                                  is_complete=False)
+        return obj.count()
+    else:
+        return 0
+
+
+def get_unfinished_todo(user):
+
+    if user.is_authenticated:
+        obj = ToDo.objects.filter(created_by=user,
+                                  is_active=True,
+                                  is_complete=False)
+        return obj.order_by('priority', 'created_at')[:3]
+    else:
         return None
