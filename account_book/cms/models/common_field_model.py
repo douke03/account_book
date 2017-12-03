@@ -9,10 +9,10 @@ class CommonField(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created_by = models.ForeignKey(
-        User, related_name='%(app_label)s_%(class)s_created_by', verbose_name='作成者')
+        User, on_delete=models.CASCADE, related_name='%(app_label)s_%(class)s_created_by', verbose_name='作成者')
     created_at = models.DateTimeField('作成日', blank=True, null=True)
     updated_by = models.ForeignKey(
-        User, related_name='%(app_label)s_%(class)s_updated_by', verbose_name='更新者', blank=True, null=True)
+        User, on_delete=models.CASCADE, related_name='%(app_label)s_%(class)s_updated_by', verbose_name='更新者', blank=True, null=True)
     updated_at = models.DateTimeField('更新日', blank=True, null=True)
 
     class Meta:

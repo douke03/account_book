@@ -10,7 +10,7 @@ class MonthDetailInfo(CommonField):
 
     month_and_year = models.CharField('年月', max_length=6)
     detail_item = models.ForeignKey(
-        DetailItem, verbose_name='項目', related_name='detail_item')
+        DetailItem, on_delete=models.PROTECT, related_name='detail_item', verbose_name='項目')
     reporting_date = models.DateField('報告日', default=datetime.now)
     an_amount = models.DecimalField('金額', max_digits=14, decimal_places=3)
     supplement = models.CharField('備考', max_length=64, blank=True)

@@ -141,4 +141,5 @@ FORMAT_MODULE_PATH = 'account_book.formats'
 
 # Login info
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/account_book/'
 LOGOUT_REDIRECT_URL = '/login/'

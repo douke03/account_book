@@ -7,7 +7,8 @@ from cms.models.master_field_model import MasterField
 class DetailItem(MasterField):
     """詳細項目テーブルを定義するためのクラス"""
 
-    item = models.ForeignKey(Item, verbose_name='親項目', related_name='item')
+    item = models.ForeignKey(
+        Item, on_delete=models.PROTECT, related_name='item', verbose_name='親項目')
     detailed_item_id = models.CharField('詳細項目ID', max_length=8)
     detailed_item_name = models.CharField('詳細項目名', max_length=32)
 

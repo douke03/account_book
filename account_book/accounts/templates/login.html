@@ -20,7 +20,7 @@
           <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
         </div>
       </div>
-      <input type="hidden" name="next" value={{ next }} />
+      <input type="hidden" name="next" value="{{ next }}" />
     </form>
     <!-- <a href="#">I forgot my password</a><br> -->
     <a href="{% url 'accounts:register' %}" class="text-center">Register a new membership</a>
