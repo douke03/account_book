@@ -12,6 +12,6 @@ import pymysql
 from django.core.wsgi import get_wsgi_application
 
 pymysql.install_as_MySQLdb()
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "account_book.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "account_book.settings.settings")
 
 application = get_wsgi_application()
