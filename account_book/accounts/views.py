@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.views.generic import CreateView
 from accounts.forms import RegisterForm
@@ -17,8 +17,7 @@ class CreateUserView(CreateView):
 
     def form_valid(self, form):
         valid = super(CreateUserView, self).form_valid(form)
-        username, password = form.cleaned_data.get(
-            'username'), form.cleaned_data.get('password1')
+        username, password = form.cleaned_data.get('username'), form.cleaned_data.get('password1')
         new_user = authenticate(username=username, password=password)
         login(self.request, new_user)
         return valid
